@@ -1,0 +1,15 @@
+[package]
+name = "raur-ext"
+version = "0.1.0"
+authors = ["morganamilo <morganamilo@gmail.com>"]
+edition = "2018"
+
+description = "Extention to raur, giving caching and request splitting"
+homepage = "http://github.com/Morganamilo/raur-ext.rs"
+repository = "http://github.com/Morganamilo/raur-ext.rs"
+documentation = "https://docs.rs/raur-ext"
+license = "GPL-3.0"
+keywords = ["archlinux", "pkgbuild", "arch", "aur", "raur"]
+
+[dependencies]
+raur = "1.0.2"
