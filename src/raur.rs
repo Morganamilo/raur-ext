@@ -16,7 +16,7 @@ impl RaurExt for Handle {
 
         for chunk in pkgs.chunks(100) {
             let res = self.info(chunk)?;
-            cache.extend(res.into_iter().map(|x| x.into()));
+            cache.extend(res.into_iter().map(Into::into));
         }
 
         Ok(())
@@ -28,7 +28,7 @@ impl RaurExt for Handle {
 
         for chunk in pkgs.chunks(100) {
             let res = self.info(chunk)?;
-            packages.extend(res.into_iter().map(|x| x.into()));
+            packages.extend(res.into_iter().map(Into::into));
         }
 
         Ok(packages)
