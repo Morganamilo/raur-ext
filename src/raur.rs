@@ -3,7 +3,7 @@ use raur::{Error, Handle, Package};
 
 pub trait RaurExt {
     fn cache_info<S: AsRef<str>>(&self, cache: &mut Cache, pkgs: &[S]) -> Result<(), Error>;
-    fn info<S: AsRef<str>>(&self, pkgs: &[S]) -> Result<Vec<Package>, Error>;
+    fn info_ext<S: AsRef<str>>(&self, pkgs: &[S]) -> Result<Vec<Package>, Error>;
 }
 
 impl RaurExt for Handle {
@@ -23,7 +23,7 @@ impl RaurExt for Handle {
     }
 
     //TODO: async
-    fn info<S: AsRef<str>>(&self, pkgs: &[S]) -> Result<Vec<Package>, Error> {
+    fn info_ext<S: AsRef<str>>(&self, pkgs: &[S]) -> Result<Vec<Package>, Error> {
         let mut packages = Vec::with_capacity(pkgs.len());
 
         for chunk in pkgs.chunks(100) {
