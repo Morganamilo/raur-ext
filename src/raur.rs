@@ -1,8 +1,13 @@
 use crate::Cache;
 use raur::{Error, Handle, Package};
 
+/// Extension functions to raur::Package
 pub trait RaurExt {
+    /// Perform an info request, storing the results into cache. Requests are not made
+    /// for packages already in cache. If all packages are already in cache then this
+    /// is effectivley a noop.
     fn cache_info<S: AsRef<str>>(&self, cache: &mut Cache, pkgs: &[S]) -> Result<(), Error>;
+    /// Perform an info request with package splitting to avoid the URI length limit.
     fn info_ext<S: AsRef<str>>(&self, pkgs: &[S]) -> Result<Vec<Package>, Error>;
 }
 

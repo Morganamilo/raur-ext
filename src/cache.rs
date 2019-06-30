@@ -4,8 +4,14 @@ use std::collections::HashSet;
 use std::hash::{Hash, Hasher};
 use std::ops::Deref;
 
+/// A common cache type for users of this library. Libraries that make use of the
+/// AUR RPC should take in a cache, make sure to check the cache before making RPC
+/// requests. On cache misses, the library should make an RPC request and place the
+/// new packages into the cache for others to use.
 pub type Cache = HashSet<Package>;
 
+/// A wrapper around raur::Package. Adds the traits neccassery to store in a hash set
+/// and look them up by pkgname.
 #[derive(Debug)]
 pub struct Package(raur::Package);
 
