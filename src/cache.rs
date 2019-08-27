@@ -12,7 +12,7 @@ pub type Cache = HashSet<Package>;
 
 /// A wrapper around raur::Package. Adds the traits neccassery to store in a hash set
 /// and look them up by pkgname.
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct Package(raur::Package);
 
 impl PartialEq for Package {
