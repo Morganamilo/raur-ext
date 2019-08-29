@@ -3,6 +3,7 @@ use std::cmp::Ordering;
 use std::collections::HashSet;
 use std::hash::{Hash, Hasher};
 use std::ops::Deref;
+use std::rc::Rc;
 
 /// A common cache type for users of this library. Libraries that make use of the
 /// AUR RPC should take in a cache, make sure to check the cache before making RPC
@@ -12,8 +13,8 @@ pub type Cache = HashSet<Package>;
 
 /// A wrapper around raur::Package. Adds the traits neccassery to store in a hash set
 /// and look them up by pkgname.
-#[derive(Debug)]
-pub struct Package(raur::Package);
+#[derive(Clone, Debug)]
+pub struct Package(Rc<raur::Package>);
 
 impl PartialEq for Package {
     fn eq(&self, other: &Self) -> bool {
@@ -56,6 +57,6 @@ impl Borrow<str> for Package {
 
 impl From<raur::Package> for Package {
     fn from(pkg: raur::Package) -> Package {
-        Package(pkg)
+        Package(Rc::new(pkg))
     }
 }
