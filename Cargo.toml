@@ -12,4 +12,4 @@ license = "GPL-3.0"
 keywords = ["archlinux", "pkgbuild", "arch", "aur", "raur"]
 
 [dependencies]
-raur = "1.0.2"
+raur = "2.0.0"
