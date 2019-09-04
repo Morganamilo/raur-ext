@@ -1,6 +1,6 @@
 [package]
 name = "raur-ext"
-version = "0.2.1"
+version = "0.2.2"
 authors = ["morganamilo <morganamilo@gmail.com>"]
 edition = "2018"
 
@@ -12,4 +12,4 @@ license = "GPL-3.0"
 keywords = ["archlinux", "pkgbuild", "arch", "aur", "raur"]
 
 [dependencies]
-raur = "1.0.2"
+raur = "2.0.0"

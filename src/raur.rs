@@ -1,7 +1,7 @@
 use crate::Cache;
-use raur::{Error, Handle, Package};
+use raur::{Error, Handle, Package, Raur};
 
-/// Extension functions to raur::Package
+/// Extension functions to raur::Handle
 pub trait RaurExt {
     /// Perform an info request, storing the results into cache. Requests are not made
     /// for packages already in cache. If all packages are already in cache then this
