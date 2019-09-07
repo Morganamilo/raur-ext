@@ -18,7 +18,7 @@ pub trait RaurExt: Raur {
             .filter(|p| !cache.contains(p.as_ref()))
             .collect::<Vec<_>>();
 
-        for chunk in pkgs.chunks(100) {
+        for chunk in pkgs.chunks(200) {
             let res = self.info(chunk)?;
             cache.reserve(chunk.len());
             ret.reserve(chunk.len());
