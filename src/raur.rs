@@ -6,6 +6,9 @@ pub trait RaurExt: Raur {
     /// Perform an info request, storing the results into cache. Requests are not made
     /// for packages already in cache. If all packages are already in cache then this
     /// is effectivley a noop.
+    ///
+    /// The packages requested will be returned back (even if they were already in cache). Packages
+    /// that could not be found will be missing from the return.
     //TODO: async
     fn cache_info<S: AsRef<str>>(
         &self,
@@ -13,12 +16,17 @@ pub trait RaurExt: Raur {
         pkgs: &[S],
     ) -> Result<Vec<crate::Package>, Self::Err> {
         let mut ret = Vec::with_capacity(pkgs.len());
-        let pkgs = pkgs
-            .iter()
-            .filter(|p| !cache.contains(p.as_ref()))
-            .collect::<Vec<_>>();
+        let mut resolve = Vec::with_capacity(pkgs.len());
 
-        for chunk in pkgs.chunks(200) {
+        for pkg in pkgs {
+            if let Some(pkg) = cache.get(pkg.as_ref()) {
+                ret.push(pkg.clone());
+            } else {
+                resolve.push(pkg.as_ref());
+            }
+        }
+
+        for chunk in resolve.chunks(200) {
             let res = self.info(chunk)?;
             cache.reserve(chunk.len());
             ret.reserve(chunk.len());
