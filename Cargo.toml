@@ -13,6 +13,8 @@ keywords = ["archlinux", "pkgbuild", "arch", "aur", "raur"]
 
 [features]
 rustls = ["raur/rustls"]
+default = ["raur/default"]
 
 [dependencies]
-raur = "2.0.0"
+raur = { version = "2.0.1", default-features = false }
+
