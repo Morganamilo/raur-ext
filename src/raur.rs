@@ -27,7 +27,7 @@ pub trait RaurExt: Raur {
         }
 
         for chunk in resolve.chunks(200) {
-            let res = self.info(chunk)?;
+            let res = self.info_ext(chunk)?;
             cache.reserve(chunk.len());
             ret.reserve(chunk.len());
             for pkg in res.into_iter() {
