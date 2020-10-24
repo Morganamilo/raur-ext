@@ -26,10 +26,10 @@ pub trait RaurExt: Raur {
             }
         }
 
-        for chunk in resolve.chunks(200) {
-            let res = self.info_ext(chunk)?;
-            cache.reserve(chunk.len());
-            ret.reserve(chunk.len());
+        for chunk in resolve.chunks(100) {
+            let res = self.info(chunk)?;
+            cache.reserve(res.len());
+            ret.reserve(res.len());
             for pkg in res.into_iter() {
                 let pkg = crate::Package::from(pkg);
                 cache.insert(pkg.clone());
